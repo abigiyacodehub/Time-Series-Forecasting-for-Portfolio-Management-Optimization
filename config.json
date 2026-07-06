@@ -1,0 +1,38 @@
+{
+  "tickers": ["AAPL", "MSFT", "GOOGL", "AMZN", "META", "TSLA", "NVDA", "JPM", "V", "UNH"],
+  "start_date": "2022-01-01",
+  "end_date": "2024-01-01",
+  "forecast_days": 30,
+  "risk_free_rate": 0.02,
+  "transaction_cost": 0.001,
+  "models": {
+    "arima": {
+      "max_p": 5,
+      "max_d": 2,
+      "max_q": 5,
+      "auto": true
+    },
+    "prophet": {
+      "growth": "linear",
+      "seasonality_mode": "multiplicative",
+      "changepoint_prior_scale": 0.05
+    },
+    "lstm": {
+      "sequence_length": 60,
+      "lstm_units": [50, 50],
+      "dropout_rate": 0.2,
+      "epochs": 100,
+      "batch_size": 32
+    }
+  },
+  "optimization": {
+    "method": "max_sharpe",
+    "allow_short": false,
+    "max_weight": null,
+    "min_weight": 0
+  },
+  "backtest": {
+    "initial_capital": 100000,
+    "rebalance_freq": "M"
+  }
+}
